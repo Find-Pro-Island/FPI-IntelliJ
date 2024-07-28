@@ -40,10 +40,7 @@
     font-size: 27px;
 
 }
-input:focus-visible {
-    outline: none; /* 기본 테두리 제거 */
-    box-shadow: none; /* 박스 그림자 제거 */
-}
+
 .title::before{
     content: "";
     display: block;
@@ -110,7 +107,7 @@ input:focus-visible {
 .category-list{
     width: 18rem;
     display: block;
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .category-list ul{
@@ -129,19 +126,6 @@ input:focus-visible {
     background: #f8f8f8;
     font-weight: 700;
     margin-right: 10px;
-    cursor: pointer;
-}
-.pointer{
-    cursor: pointer;
-    width: 14rem;
-    height: 2rem;
-    text-align: left;
-    font-size: 18px;
-    margin: 5px 0;
-    padding: 5px 0px 15px 20px;
-    &:hover{
-        cursor: pointer
-    }
 }
 
 .category-list ul li a{
@@ -207,10 +191,6 @@ input:focus-visible {
 
 .item-content{
     word-wrap: break-word !important;
-    flex-direction: column;
-    align-items: stretch;
-    height: 130px;
-    display: flex;
     width: 100%;
     overflow: hidden;
     margin-bottom: .625rem;
@@ -221,10 +201,9 @@ input:focus-visible {
 }
 .item-content p{
     margin: 0;
-    align-items: stretch;
 }
 .item-content p img{
-    /*max-height: 155px;*/
+    max-height: 3.14em;
     overflow: hidden;
     margin-bottom: .625rem;
     color: #888;
@@ -252,7 +231,7 @@ input:focus-visible {
 
 .footer-like{
     color: #c5c5c5;
-    font-size: .78rem;
+    font-size: .75rem;
     letter-spacing: -.0125rem;
 }
 
@@ -261,23 +240,7 @@ input:focus-visible {
     content: "";
     background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTkuOTQyIDYuMjkzVjMuNzZjMC0xLjA1LS44MjYtMS45LTEuODQ0LTEuOWwtMi40NiA1Ljd2Ni45NjZoNi45MzZhMS4yNDEgMS4yNDEgMCAwMDEuMjMtMS4wNzZsLjg0OS01LjdhMS4yOTMgMS4yOTMgMCAwMC0uMjg4LTEuMDIyIDEuMjE1IDEuMjE1IDAgMDAtLjk0Mi0uNDM1aC0zLjQ4ek0zLjkzIDE0LjUyNkgyLjU2M2MtLjY3OSAwLTEuMjMtLjU2Ny0xLjIzLTEuMjY2VjguODI2YzAtLjcuNTUxLTEuMjY2IDEuMjMtMS4yNjZIMy45M3Y2Ljk2NnoiIGZpbGw9IiNDNUM1QzUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==) no-repeat 0;
 }
-.footer-show {
-    color: #c5c5c5;
-    font-size: .79rem;
-    letter-spacing: -.0125rem;
-    position: relative;
-    padding-left: 2.5rem; /* 아이콘과 텍스트 사이의 간격을 조정합니다 */
-    padding-right :0.5rem;
-}
 
-.footer-show::before {
-    content: "조회수 : ";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background-size: contain;
-}
 .footer-comment{
     color: #c5c5c5;
     font-size: .75rem;

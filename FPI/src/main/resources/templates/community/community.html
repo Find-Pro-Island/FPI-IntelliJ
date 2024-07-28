@@ -181,7 +181,7 @@ function renderUploadList(uploads){
         // div에서는 if사용불가, 이미지띄워주는거 다르게 하기위해 따로 변수사용
         const thumbnailSrc = (upload.communityContent && upload.communityContent.trim() !== '' && upload.communityContent.trim() !== 'dd' && upload.communityThumbnail)
             ? upload.communityThumbnail
-            : '/img/basicIMG.png'; //나의 프로젝트폴더에 직접 저장되어있는 사진
+            : '/img/basicIMG.png';
 
 
         //
@@ -201,10 +201,10 @@ function renderUploadList(uploads){
             <div class="feed-footer">
                 <div>
                     <div class="footer-like">${upload.likeCount}</div>
-                    <div class="footer-comment">${upload.commentCount}</div>
+                    <div class="footer-comment">0</div>
                 </div>
                 <div>
-                    <div class="footer-date" style="margin-right: 2rem;">작성자: ${upload.author}</div>
+                    <div class="footer-date" style="margin-right: 2rem;">작성자: ${upload.userName}</div>
                     <div class="footer-date">${new Date(upload.communityRegisterDate).toLocaleDateString()}</div>
                 </div>
             </div>
@@ -215,6 +215,7 @@ function renderUploadList(uploads){
         uploadContainer.append(uploadRow);
     });
 }
+
 
 
 

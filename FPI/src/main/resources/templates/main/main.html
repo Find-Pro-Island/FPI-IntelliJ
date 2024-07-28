@@ -178,7 +178,7 @@
                 <div style="width: 70%;">
                   <h5 class="card-title" th:text="*{communityTitle}">글 제목 </h5>
                   <p class="card-text" th:text="*{subject}">자유게시판</p>
-                  <p th:text="*{communityRegisterDate != communityUpdateDate ? author+'(수정)':author+'(New)'}"></p>
+                  <p th:text="*{communityRegisterDate != communityUpdateDate ? userName+'(수정)':userName+'(New)'}"></p>
                   <a th:href="@{/community/detail/{communityId}(communityId=*{communityId})}" class="btn btn-light" style="width: 95%;margin-top: 40px" >보러가기</a>
                 </div>
                 <div th:unless="*{communityThumbnail == null or communityThumbnail == '' or communityThumbnail == 'dd'}">

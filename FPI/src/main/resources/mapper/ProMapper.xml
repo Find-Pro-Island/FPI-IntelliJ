@@ -76,7 +76,7 @@
         where pro_id = #{proId}
     </select>
 
-<!--수정 폼으로 넘어갈때 가져갈 자료-->
+
     <select id="selectEditPro">
         select pro.*, l.REGION, l.CITY
         from (select p.PRO_ID,
@@ -388,25 +388,4 @@
     </select>
 
 
-    <!--    프로가 올린 서비스를 통해 아이디 가져오기 -->
-    <select id="selectProIdByProUploadId" resultType="Long">
-        select PRO_ID
-        from TBL_PRO_UPLOAD
-        where PRO_UPLOAD_ID = #{proUploadId}
-    </select>
-
-    <!--    유저가 올린 견적를 통해 아이디 가져오기 -->
-    <select id="selectUserIdByProRequestId" resultType="String">
-        select USER_ID
-        from TBL_PRO_REQUEST
-                 inner join TBL_USER_UPLOAD
-                            on TBL_PRO_REQUEST.USER_UPLOAD_ID = TBL_USER_UPLOAD.USER_UPLOAD_ID
-        where TBL_PRO_REQUEST.PRO_REQUEST_ID = #{proRequestId}
-    </select>
-
-<!--    마이페이지에서 클릭으로 자격증정보 삭제-->
-    <delete id="clickDeleteCard">
-        delete from TBL_CARDINFO
-        where CARDINFO_ID = #{cardIndfoId}
-    </delete>
 </mapper>

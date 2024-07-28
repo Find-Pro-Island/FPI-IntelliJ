@@ -6,12 +6,12 @@
     <select id="selectUserCommuList" resultType="UserCommunityListDTO">
         select *
         from (select ROWNUM AS RN ,c.*
-                from(
-                    select *
-                    from TBL_COMMUNITY
-                    where USER_ID=#{userId} and author = #{myName}
-                    order by COMMUNITY_REGISTER_DATE DESC,COMMUNITY_ID desc) c
-                where ROWNUM &lt;= #{endRow})
+        from(
+        select *
+        from TBL_COMMUNITY
+        where USER_ID=#{userId}
+        order by COMMUNITY_REGISTER_DATE DESC,COMMUNITY_ID desc) c
+        where ROWNUM &lt;= #{endRow})
         where RN &gt; #{startRow}
     </select>
 
@@ -19,25 +19,6 @@
     <select id="countUserCommu">
         select count(*)
         from TBL_COMMUNITY
-        where USER_ID=#{userId} and author = #{myName}
+        where USER_ID=#{userId}
     </select>
-<!--    내가 작성한 댓글 페이징-->
-<select id="selectUserCommentList" resultType="CommentListDTO">
-    select *
-    from (select ROWNUM AS RN ,c.*
-          from(
-                  select *
-                  from TBL_Comment
-                  where USER_ID=#{userId} and author = #{myName}
-                  order by Comment_REGISTER_DATE DESC,Comment_ID desc) c
-          where ROWNUM &lt;= #{endRow})
-    where RN &gt; #{startRow}
-</select>
-
-<!--    내가 작성한 댓글 페이징위해 전체 갯수-->
-<select id="countUserComment">
-    select count(*)
-    from TBL_Comment
-    where USER_ID=#{userId} and author = #{myName}
-</select>
 </mapper>

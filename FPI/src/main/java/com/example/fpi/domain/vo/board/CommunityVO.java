@@ -25,14 +25,9 @@ public class CommunityVO {
     private LocalDateTime communityRegisterDate;
     private LocalDateTime communityUpdateDate;
     private String communityThumbnail;
-    private String showContent;
-    private int views;
-    private String author;
-
-
 
     @Builder
-    public CommunityVO(Long communityId, String subject, String communityTitle, String communityContent,String userId,String userName, LocalDateTime communityRegisterDate, LocalDateTime communityUpdateDate, String communityThumbnail, String showContent, int views,String author) {
+    public CommunityVO(Long communityId, String subject, String communityTitle, String communityContent,String userId,String userName, LocalDateTime communityRegisterDate, LocalDateTime communityUpdateDate, String communityThumbnail) {
         this.communityId = communityId;
         this.subject = subject;
         this.communityTitle = communityTitle;
@@ -42,10 +37,6 @@ public class CommunityVO {
         this.communityRegisterDate = communityRegisterDate;
         this.communityUpdateDate = communityUpdateDate;
         this.communityThumbnail = communityThumbnail;
-        this.showContent = showContent;
-        this.views = views;
-        this.author = author;
-
     }
 
     public static CommunityVO toEntity(CommunityDTO communityDTO){
@@ -58,9 +49,6 @@ public class CommunityVO {
                 .communityRegisterDate(communityDTO.getCommunityRegisterDate())
                 .communityUpdateDate(communityDTO.getCommunityUpdateDate())
                 .communityThumbnail(communityDTO.getCommunityThumbnail())
-                .showContent(communityDTO.getShowContent())
-                .views(communityDTO.getViews())
-                .author(communityDTO.getAuthor())
                 .build();
     }
 

@@ -11,7 +11,6 @@ public interface CommentMapper {
 //    해당 게시글의 댓글 리스트 가져오기
     List<CommentListDTO> selectCommentList(Long communityId);
 
-
 //    댓글 추가
     void insertComment(CommentVO commentVO);
 //    댓글수정

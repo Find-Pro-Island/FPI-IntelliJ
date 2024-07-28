@@ -2,14 +2,15 @@ package com.example.fpi.service.board;
 
 import com.example.fpi.domain.dto.board.CommunityDTO;
 import com.example.fpi.domain.dto.board.CommunityDetailDTO;
+import com.example.fpi.domain.dto.board.CommunityFileDTO;
 import com.example.fpi.domain.dto.board.LikeDTO;
 import com.example.fpi.domain.dto.pro.ProSendReqListDTO;
 import com.example.fpi.domain.oauth.CustomOAuth2User;
 import com.example.fpi.domain.util.PagedResponse;
+import com.example.fpi.domain.vo.board.CommunityFileVO;
 import com.example.fpi.domain.vo.board.CommunityVO;
 import com.example.fpi.domain.vo.board.LikeVO;
 import com.example.fpi.mapper.File.FileMapper;
-import com.example.fpi.mapper.board.CommentMapper;
 import com.example.fpi.mapper.board.CommunityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,20 +26,36 @@ import java.util.regex.Pattern;
 public class CommunityServiceImpl implements CommunityService {
 
     private final CommunityMapper communityMapper;
-    private final CommentMapper commentMapper;
+    private final FileMapper fileMapper;
 
 
+//    @Override
+//    public List<CommunityDTO> SelectBoardList(int page, int pageSize) {
+//        int startRow = (page - 1) * pageSize;
+//        int endRow = page * pageSize;
+//
+//        return communityMapper.SelectBoardList(startRow, endRow);
+//    }
+//
+//    @Override
+//    public List<CommunityDTO> SelectProTipList(int page, int pageSize) {
+//        int startRow = (page - 1) * pageSize;
+//        int endRow = page * pageSize;
+//
+//        return communityMapper.SelectProTipList(startRow, endRow);
+//    }
 
 //    게시판 리스트,rest
     @Override
-    public PagedResponse<CommunityDetailDTO> getCommunityList(int page, int pageSize,String search ,String subject) {
+    public PagedResponse<CommunityDTO> getCommunityList(int page, int pageSize,String search ,String subject) {
         int startRow = (page - 1) * pageSize;
         int endRow = page * pageSize;
 
         int totalLists = communityMapper.countCommunity(search,subject);
         int totalPages = (int) Math.ceil((double)totalLists/pageSize);
 
-        List<CommunityDetailDTO> lists = communityMapper.communitySelectAll(startRow,endRow,search,subject);
+        List<CommunityDTO> lists = communityMapper.communitySelectAll(startRow,endRow,search,subject);
+
         return new PagedResponse<>(lists, page, totalPages, pageSize, totalLists);
     }
 

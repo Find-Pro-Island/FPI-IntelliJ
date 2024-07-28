@@ -217,7 +217,6 @@ CREATE TABLE TBL_PRO_REVIEW(
            REFERENCES TBL_PRO (PRO_ID) ON DELETE CASCADE
 );
 
---프로가 받는 리뷰 인데 받는 사람 pro_id 도 들어가야하지 않나?
 
 -- 회원이 받는 리뷰
 CREATE TABLE TBL_USER_REVIEW(
@@ -285,7 +284,6 @@ CREATE TABLE TBL_PRO_UPLOAD_FILE(
     PRO_UPLOAD_FILE_ID NUMBER PRIMARY KEY,
     PRO_UPLOAD_FILE_ROUTE VARCHAR2(1000),
     PRO_UPLOAD_FILE_ORIGINAL VARCHAR2(1000),
-    PRO_UPLOAD_FILE_SAVED VARCHAR2(1000),
     PRO_UPLOAD_ID NUMBER NOT NULL,
     CONSTRAINT FK_PRO_UPLOAD_FILE FOREIGN KEY (PRO_UPLOAD_ID)
         REFERENCES TBL_PRO_UPLOAD (PRO_UPLOAD_ID) ON DELETE CASCADE
@@ -789,95 +787,6 @@ alter table TBL_PRO_REQUEST
 
 alter table TBL_PRO_REQUEST
     add CHECK_USER_REVIEW NUMBER default 0;
-SELECT TUR.USER_REQUEST_ID
-     , TUR.USER_REQUEST_DATE
-     , TC.CATEGORY_NAME
-     , TS.SERVICE_NAME
-     , TL.REGION
-     , TL.CITY
-     , TUR.USER_REQUEST_CONTENT
-     , TU.USER_STAR_RATE
-     , TUR.USER_REQUEST_PROGRESS
-     , TU.USER_NAME
-     , TU.USER_ID
-     , TBL_PRO_UPLOAD.PRO_UPLOAD_TITLE
-     , TUR.USER_REQUEST_PAY
-FROM TBL_USER_REQUEST TUR
-         INNER JOIN TBL_PRO_UPLOAD
-                    ON TUR.PRO_UPLOAD_ID = TBL_PRO_UPLOAD.PRO_UPLOAD_ID
-         INNER JOIN TBL_SERVICE ts
-                    ON TBL_PRO_UPLOAD.SERVICE_ID = TS.SERVICE_ID
-         INNER JOIN TBL_CATEGORY tc
-                    ON TS.CATEGORY_ID = TC.CATEGORY_ID
-         INNER JOIN TBL_USER TU
-                    ON TU.USER_ID = TUR.USER_ID
-         INNER JOIN TBL_LOCATION tl
-                    ON TU.LOCATION_ID = TL.LOCATION_ID
-WHERE TUR.USER_REQUEST_ID = 1
-
-SELECT USER_REQUEST_ID, USER_REQUEST_PAY, USER_REQUEST_DATE, USER_REQUEST_PROGRESS,
-       TBL_PRO_UPLOAD.PRO_UPLOAD_TITLE,NVL(PR.PRO_STAR_RATE , '0') AS pro_Star_Rate, PR.PRO_NAME, PR.EMP_CNT,
-       TBL_USER_REQUEST.PRO_UPLOAD_ID
-FROM TBL_USER_REQUEST
-         INNER JOIN TBL_PRO_UPLOAD
-                    ON TBL_USER_REQUEST.PRO_UPLOAD_ID = TBL_PRO_UPLOAD.PRO_UPLOAD_ID
-         INNER JOIN TBL_PRO PR
-                    ON TBL_PRO_UPLOAD.PRO_ID = PR.PRO_ID
-WHERE TBL_USER_REQUEST.USER_ID = 3619331702;
-
-
-select sum(cnt) as proEmpCount
-from(
-        select count(*) as cnt
-        from TBL_USER_REQUEST u join TBL_PRO_UPLOAD p
-                                     on u.PRO_UPLOAD_ID = p.PRO_UPLOAD_ID
-        where u.USER_REQUEST_PROGRESS ='POST' and p.PRO_ID = 1
-
-
-
-select sum(cnt) as proEmpCount
-from(
-        select count(*) as cnt
-        from TBL_USER_REQUEST u join TBL_PRO_UPLOAD p
-                                     on u.PRO_UPLOAD_ID = p.PRO_UPLOAD_ID
-        where u.USER_REQUEST_PROGRESS ='POST' and p.PRO_ID = 1
-
-        union all
-
-        select count(*) as cnt
-        from TBL_PRO_REQUEST
-        where PRO_ID=1 and PRO_REQUEST_PROGRESS= 'POST'
-    );
-        union all
-
-        select count(*) as cnt
-        from TBL_PRO_REQUEST
-        where PRO_ID=1 and PRO_REQUEST_PROGRESS= 'POST'
-    );
-
-select count(*) as cnt
-from TBL_USER_REQUEST u join TBL_PRO_UPLOAD p
-                             on u.PRO_UPLOAD_ID = p.PRO_UPLOAD_ID
-where u.USER_REQUEST_PROGRESS ='POST' and p.PRO_ID = 1
-
-
-
-SELECT USER_REQUEST_ID, USER_REQUEST_PAY, USER_REQUEST_DATE, USER_REQUEST_PROGRESS,
-       TBL_PRO_UPLOAD.PRO_UPLOAD_TITLE,NVL(PR.PRO_STAR_RATE , '0') AS pro_Star_Rate, PR.PRO_NAME, PR.EMP_CNT,
-       TBL_USER_REQUEST.PRO_UPLOAD_ID
-FROM TBL_USER_REQUEST
-         INNER JOIN TBL_PRO_UPLOAD
-                    ON TBL_USER_REQUEST.PRO_UPLOAD_ID = TBL_PRO_UPLOAD.PRO_UPLOAD_ID
-         INNER JOIN TBL_PRO PR
-                    ON TBL_PRO_UPLOAD.PRO_ID = PR.PRO_ID
-WHERE TBL_USER_REQUEST.USER_ID = 3619331702;
-
-
-alter table TBL_PRO_REQUEST
-    add CHECK_PRO_REVIEW NUMBER default 0;
-
-alter table TBL_PRO_REQUEST
-    add CHECK_USER_REVIEW NUMBER default 0;
 
 alter table TBL_USER_REQUEST
     add CHECK_PRO_REVIEW NUMBER default 0;
@@ -898,10 +807,6 @@ from(
         from TBL_PRO_REQUEST
         where PRO_ID=1 and PRO_REQUEST_PROGRESS= 'POST'
     );
-alter table TBL_COMMUNITY
-    add VIEWS NUMBER;
-alter table TBL_COMMUNITY
-    add show_content varchar2(1000)
 
 select count(*) as cnt
 from TBL_USER_REQUEST u join TBL_PRO_UPLOAD p

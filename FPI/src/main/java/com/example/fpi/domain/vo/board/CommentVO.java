@@ -18,17 +18,15 @@ public class CommentVO {
     private String commentContent;
     private LocalDateTime commentRegisterDate;
     private LocalDateTime commentUpdateDate;
-    private String author;
 
     @Builder
-    public CommentVO(Long commentId, Long communityId, String userId, String commentContent, LocalDateTime commentRegisterDate, LocalDateTime commentUpdateDate, String author){
+    public CommentVO(Long commentId, Long communityId, String userId, String commentContent, LocalDateTime commentRegisterDate, LocalDateTime commentUpdateDate){
         this.commentId=commentId;
         this.communityId=communityId;
         this.userId=userId;
         this.commentContent=commentContent;
         this.commentRegisterDate=commentRegisterDate;
         this.commentUpdateDate=commentUpdateDate;
-        this.author=author;
     }
 
     public static CommentVO toEntity(CommentDTO commentDTO){
@@ -38,7 +36,6 @@ public class CommentVO {
                 .commentContent(commentDTO.getCommentContent())
                 .commentRegisterDate(commentDTO.getCommentRegisterDate())
                 .commentUpdateDate(commentDTO.getCommentUpdateDate())
-                .author(commentDTO.getAuthor())
                 .build();
     }
 

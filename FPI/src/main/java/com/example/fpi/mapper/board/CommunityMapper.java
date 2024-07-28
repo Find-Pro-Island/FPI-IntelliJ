@@ -13,7 +13,9 @@ import java.util.List;
 public interface CommunityMapper {
     long getSeq();
 
-    List<CommunityDetailDTO> communitySelectAll(int startRow, int endRow,String search,String subject); //전체 커뮤니티 리스트
+    List<CommunityDTO> communitySelectAll(int startRow, int endRow,String search,String subject); //전체 커뮤니티 리스트
+//    List<CommunityDTO> SelectBoardList(int startRow, int endRow); //자유게시판 리스트
+//    List<CommunityDTO> SelectProTipList(int startRow, int endRow); //전문가팁 리스트
 
     List<CommunityDTO> communityList(); //메인에서 뿌려주는 최근커뮤니티 리스트
 

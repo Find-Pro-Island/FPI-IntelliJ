@@ -20,8 +20,6 @@ import java.util.UUID;
 @RequestMapping("/upload")
 public class SummernoteController {
     @PostMapping("/image")
-
-//    써머노트에서 추가하는 사진을 서버에서 관리하기위해 만듬
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
             return new ResponseEntity<>("파일이 비어있습니다.", HttpStatus.BAD_REQUEST);

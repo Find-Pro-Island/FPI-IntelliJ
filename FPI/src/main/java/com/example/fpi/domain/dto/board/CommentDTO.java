@@ -14,5 +14,4 @@ public class CommentDTO {
     private String commentContent;
     private LocalDateTime commentRegisterDate;
     private LocalDateTime commentUpdateDate;
-    private String author;
 }

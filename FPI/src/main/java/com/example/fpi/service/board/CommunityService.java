@@ -2,7 +2,7 @@ package com.example.fpi.service.board;
 
 import com.example.fpi.domain.dto.board.CommunityDTO;
 import com.example.fpi.domain.dto.board.CommunityDetailDTO;
-
+import com.example.fpi.domain.dto.board.CommunityFileDTO;
 import com.example.fpi.domain.dto.board.LikeDTO;
 import com.example.fpi.domain.dto.pro.ProUploadListDTO;
 import com.example.fpi.domain.oauth.CustomOAuth2User;
@@ -17,7 +17,7 @@ import java.util.List;
 public interface CommunityService {
 
 //    게시판리스트 select
-PagedResponse<CommunityDetailDTO> getCommunityList(int page, int pageSize,String search,String subject); //전체게시판,페이징
+PagedResponse<CommunityDTO> getCommunityList(int page, int pageSize,String search,String subject); //전체게시판,페이징
 //    List<CommunityDTO> SelectBoardList(int page, int pageSize); //자유게시판
 //    List<CommunityDTO> SelectProTipList(int page, int pageSize); //전문가팁
 

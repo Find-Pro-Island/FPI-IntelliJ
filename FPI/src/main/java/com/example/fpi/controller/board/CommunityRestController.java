@@ -1,7 +1,6 @@
 package com.example.fpi.controller.board;
 
 import com.example.fpi.domain.dto.board.CommunityDTO;
-import com.example.fpi.domain.dto.board.CommunityDetailDTO;
 import com.example.fpi.domain.dto.pro.ProReceivedReqListDTO;
 import com.example.fpi.domain.util.PagedResponse;
 import com.example.fpi.service.board.CommunityService;
@@ -19,10 +18,10 @@ public class CommunityRestController {
 
     private final CommunityService communityService;
     @GetMapping("/community/list")
-    public ResponseEntity<PagedResponse<CommunityDetailDTO>> getCommunityList(@RequestParam(defaultValue = "1") int page,
-                                                                              @RequestParam(defaultValue = "5") int size,
-                                                                              @RequestParam String search,
-                                                                              @RequestParam(defaultValue = "") String subject){
+    public ResponseEntity<PagedResponse<CommunityDTO>> getCommunityList( @RequestParam(defaultValue = "1") int page,
+                                                                         @RequestParam(defaultValue = "5") int size,
+                                                                         @RequestParam String search,
+                                                                         @RequestParam(defaultValue = "") String subject){
 
         System.out.println(search);
         System.out.println(subject);

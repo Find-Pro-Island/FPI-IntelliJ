@@ -171,6 +171,55 @@ public class UserMypageController {
         }
     }
 
+//    @GetMapping({"/activeList/community","/activeList/review","/activeList/comment"})
+//    public String active(@AuthenticationPrincipal CustomOAuth2User customOAuth2User,
+//                         @RequestParam(value="page", defaultValue = "1")int page,
+//                         @RequestParam (value="pageSize", defaultValue = "8")int pageSize,
+//                         Model model) {
+//        String userId = customOAuth2User.getUserId();
+//        int totalCommu = activeService.countUserCommu(userId); //전체 게시글
+//        int totalPages =(int) Math.ceil((double)totalCommu/pageSize); //페이지 수
+//
+//        List<UserCommunityListDTO> lists = activeService.selectUserCommuList(userId,page,pageSize);
+//        int pageGroupSize=5; //페이지 그룹
+//        int startPage=((page-1)/pageGroupSize)* pageGroupSize +1; //그룹의 시작페이지 구함
+//        int endPage= Math.min(startPage+pageGroupSize -1,totalPages); //
+//
+//        model.addAttribute("lists",lists);
+//        model.addAttribute("currentPage",page);
+//        model.addAttribute("pageSize",pageSize);
+//        model.addAttribute("totalPages",totalPages);
+//        model.addAttribute("startPage",startPage);
+//        model.addAttribute("endPage",endPage);
+//
+//
+//        return "/user/mypage/creationList1";
+//    }
+    @GetMapping("/activeList")
+    public String active(@AuthenticationPrincipal CustomOAuth2User customOAuth2User,
+                         @RequestParam(value="page", defaultValue = "1")int page,
+                         @RequestParam (value="pageSize", defaultValue = "8")int pageSize,
+                         Model model) {
+        String userId = customOAuth2User.getUserId();
+        int totalCommu = activeService.countUserCommu(userId); //전체 게시글
+        int totalPages =(int) Math.ceil((double)totalCommu/pageSize); //페이지 수
+
+        List<UserCommunityListDTO> lists = activeService.selectUserCommuList(userId,page,pageSize);
+        int pageGroupSize=5; //페이지 그룹
+        int startPage=((page-1)/pageGroupSize)* pageGroupSize +1; //그룹의 시작페이지 구함
+        int endPage= Math.min(startPage+pageGroupSize -1,totalPages); //
+
+        model.addAttribute("lists",lists);
+        model.addAttribute("currentPage",page);
+        model.addAttribute("pageSize",pageSize);
+        model.addAttribute("totalPages",totalPages);
+        model.addAttribute("startPage",startPage);
+        model.addAttribute("endPage",endPage);
+
+
+        return "/user/mypage/creationList1";
+    }
+
 
 
 }
